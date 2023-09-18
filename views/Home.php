@@ -15,10 +15,10 @@
      include('../componentes/Navbars/Navbar.php');
      include('../componentes/Footer.php');
      ?>
-    <h1>Tu LOG IN fue un exito!!</h1>
-    <h1>Bienvenid@</h1>
-
-    <p> 
+    <h1>Tu LOG IN fue un exito!! Bienvenido</h1>
+    <br>
+    <br>
+    <!-- <p> 
       Este mini proyecto es mi respuesta a "Evaluación Arwebs – Symfony 3: Catálogo de Productos".
       Me tomo aproximadamente 2 dias en realizarlo, utilice como servidor local XAMPP,
       para los estilos utilice Bootstrap 5.
@@ -26,16 +26,12 @@
       mas de que tenga exito o no en el proceso de seleccion,
       pude sumar experiencia y aprender un nuevo lenguaje!!. 
       MUCHAS GRACIAS!!
-    </p>
-    
-    <?php 
-     $url_base = 'http://localhost/crud_pruebatecnica_adminseg/';
-    ?>
+    </p> -->
+    <?php include('../Search.php'); ?>
+    <br>
+    <br>
+    <?php $url_base = 'http://localhost/crud_pruebatecnica_adminseg/'; ?>
     <a name="" id="" class="btn btn-primary" href="<?php echo $url_base ?>" role="button">Volver al LOG IN</a>
-
-    <?php 
-include('../Search.php');
-?>
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
