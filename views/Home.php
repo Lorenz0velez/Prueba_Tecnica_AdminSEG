@@ -33,6 +33,9 @@
     ?>
     <a name="" id="" class="btn btn-primary" href="<?php echo $url_base ?>" role="button">Volver al LOG IN</a>
 
+    <?php 
+include('../Search.php');
+?>
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->

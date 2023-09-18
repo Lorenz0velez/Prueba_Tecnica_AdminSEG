@@ -14,11 +14,32 @@
   <?php
     include('../Navbars/NavbarLogIn.php');
     include('../../conexion.php');
+
+
+    if ($_SERVER["REQUEST_METHOD"] === "POST") {
+      if (!empty($_POST['username']) && !empty($_POST['password']) && !empty($_POST['email'])) {
+          $username = $_POST['username'];
+          $password = $_POST['password'];
+          $email = $_POST['email'];
+    
+          $stm = $conexion->prepare("INSERT INTO user (username, password, email) VALUES (:username, :password, :email)");
+          $stm->bindParam(":username", $username);
+          $stm->bindParam(":password", $password);
+          $stm->bindParam(":email", $email);
+    
+          $stm->execute();
+    
+          header("location:../../views/Home.php");
+      } else {
+          echo "Por favor, complete todos los campos que son obligatorios obligatorios.";
+      }
+    }
     ?>
 
   <h1>CREATE ACCOUNT</h1>
 
-<form action="action_create_account.php" method="post" >
+<!-- <form action="action_create_account.php" method="post" > -->
+<form action="" method="post" >
 <div class="mb-3">
 <label for="exampleInputEmail1" class="form-label" name='email'>Email address</label>
 <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">

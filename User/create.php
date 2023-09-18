@@ -1,17 +1,21 @@
 <?php 
-if($_POST){
-    $username=( isset($_POST['username']) ? $_POST['username'] : "" );
-    $password=( isset($_POST['password']) ? $_POST['password'] : "" );
-    $email=( isset($_POST['email']) ? $_POST['email'] : "" );
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+  if (!empty($_POST['username']) && !empty($_POST['password']) && !empty($_POST['email'])) {
+      $username = $_POST['username'];
+      $password = $_POST['password'];
+      $email = $_POST['email'];
 
-    $stm=$conexion->prepare("INSERT INTO user (username, password, email) VALUES (:username,:password,:email)");
-    $stm->bindParam(":username",$username);
-    $stm->bindParam(":password",$password);
-    $stm->bindParam(":email",$email);
+      $stm = $conexion->prepare("INSERT INTO user (username, password, email) VALUES (:username, :password, :email)");
+      $stm->bindParam(":username", $username);
+      $stm->bindParam(":password", $password);
+      $stm->bindParam(":email", $email);
 
-    $stm->execute();
+      $stm->execute();
 
-    header("location:user.php");
+      header("location:user.php");
+  } else {
+      echo "Por favor, complete todos los campos obligatorios.";
+  }
 }
 ?>
 

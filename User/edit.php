@@ -33,7 +33,7 @@ if ($_POST) {
 
     $stm->execute();
 
-    header("location:user.php"); // Mover la redirección aquí, después de la actualización
+    header("location:user.php"); 
 }
 
 

@@ -51,6 +51,9 @@ if(isset($_GET["name"])){
         </tbody>
     </table>
 </div>
+<?php $url_base = 'http://localhost/crud_pruebatecnica_adminseg/'; ?>
+<a name="" id="" class="btn btn-primary" href="<?php echo $url_base ?>views/Home.php" role="button">Volver a Home</a>
+
 
 <?php include('create.php'); ?>
 <?php 

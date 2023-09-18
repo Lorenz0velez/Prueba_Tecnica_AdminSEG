@@ -10,38 +10,32 @@
 
     <title>Lorenzo Velez AdminSEG</title>
   </head>
+  <?php
+  include('conexion.php')
+  ?>
   <body>
+    <h1>BUSCADOR DE PRODUCTOS</h1>
 
+    <form method="get" class="d-flex">
+        <input class="form-control me-2" type="text"   name="busqueda"  placeholder="Search" aria-label="Search">
+        <input class="btn btn-warning" type="submit" name="enviar"  value="SEARCH" placeholder="Search" aria-label="Search">
+      </form>
+
+      <?php
+    if (isset($_GET['enviar'])) {
+      $busqueda = $_GET['busqueda'];
+      $consulta = $conexion->prepare("SELECT * FROM products WHERE name LIKE :busqueda");
+      $busqueda = '%' . $busqueda . '%'; // Agrega los '%' al valor de búsqueda
+      $consulta->bindParam(':busqueda', $busqueda, PDO::PARAM_STR);
+      $consulta->execute();
   
-    <?php
-    include('componentes/Navbars/NavbarLogIn.php');
-    include('conexion.php');
+      while ($row = $consulta->fetch(PDO::FETCH_ASSOC)) {
+          echo '<h5> Product Name: ' . $row['name'] . '</h5>';
+          echo '<h5> Category: '. $row['category'] . '</h5>';
+          echo '<h5> Image URL: ' . $row['image'] . '</h5>';
+      }
+  }
     ?>
-
-  <h1>LOG IN</h1>
-
-<form action="validacion.php" method="post" >
-<div class="mb-3">
-<label for="exampleInputEmail1" class="form-label" name='email'>Email address</label>
-<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">
-<div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-</div>
-<div class="mb-3">
-<label for="exampleInputPassword1" class="form-label" name='username'>Username</label>
-<input type="text" class="form-control" id="exampleInputPassword1" name="username">
-</div>
-<div class="mb-3">
-<label for="exampleInputPassword1" class="form-label" name='password'>Password</label>
-<input type="password" class="form-control" id="exampleInputPassword1" name="password">
-</div>
-<button type="submit" class="btn btn-primary">Submit</button>
-</form>
-<?php $url_base = 'http://localhost/crud_pruebatecnica_adminseg/'; ?>
-<a name="" id="" class="btn btn-primary" href="<?php echo $url_base ?>componentes/CreateAccount/CreateAccount.php" role="button">Create Account</a>
-
-
-<?php include('Search.php'); ?>
-
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
